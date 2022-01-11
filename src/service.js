@@ -12,6 +12,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 // Requiring project files
+import bidRoute from './routes/bidRoute';
 
 // load configurations
 const port = config.get('app.port');
@@ -56,6 +57,7 @@ app.get('/', (req, res) => {
 });
 
 // Calling api routes
+app.use(bidRoute);
 
 // Running server
 app.listen(port, () => httpLogger(`Server is running on port ${port}`));
