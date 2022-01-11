@@ -9,9 +9,6 @@ module.exports = {
   client: {
     url: 'http://localhost:3000',
   },
-  api: {
-    prefix: '',
-  },
   database: {
     url: 'mongodb://localhost:27017/pets_auctions',
   },

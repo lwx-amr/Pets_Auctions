@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import debug from 'debug';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -14,6 +15,7 @@ import 'regenerator-runtime/runtime';
 
 // load configurations
 const port = config.get('app.port');
+const db = config.get('database.url');
 const app = express();
 const corsOptions = {
   origin: config.get('client.url'),
@@ -22,6 +24,7 @@ const corsOptions = {
 
 // Init loggers
 const httpLogger = debug('app:http-server');
+const dbLogger = debug('app:db');
 
 // Enable body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,9 +45,14 @@ const apiLimiter = rateLimit({
 });
 app.use(apiLimiter); // apply to all requests
 
+// Setup mongoose connection
+mongoose.Promise = global.Promise;
+mongoose.connect(db)
+  .catch((err) => dbLogger({ error: err }));
+
 // Simple main api url response
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome, this is our great web scraping project.' });
+  res.json({ message: 'Welcome, this is our great Pets Auction web app.' });
 });
 
 // Calling api routes
