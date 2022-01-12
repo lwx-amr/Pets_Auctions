@@ -1,12 +1,14 @@
 import { Schema, model } from 'mongoose';
 
+const { ObjectId } = Schema;
+
 const BidSchema = Schema({
   petId: {
-    type: Schema.ObjectId,
+    type: ObjectId,
     required: true,
   },
-  username: {
-    type: String,
+  userId: {
+    type: ObjectId,
     required: true,
   },
   value: {
