@@ -11,6 +11,10 @@ const BidSchema = Schema({
     type: ObjectId,
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
   value: {
     type: Number,
     required: true,

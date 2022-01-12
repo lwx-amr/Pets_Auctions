@@ -13,7 +13,7 @@ const UserSchema = Schema({
     type: String,
     required: true,
   },
-  api_key: {
+  apiKey: {
     type: String,
     required: true,
   },
