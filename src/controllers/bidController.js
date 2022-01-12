@@ -4,6 +4,13 @@ import BidModel from '../repository/bidModel';
 
 const bidLogger = debug('app:bidController');
 
+const badInputsResponse = (res, err) => {
+  bidLogger(`Failed due to bad inputs, Error: ${err}"`);
+  res.status(405).json({
+    msg: 'Invalid input',
+  });
+};
+
 const addNewBid = (req, res) => {
   const { username, petId, bidValue } = req.body;
   bidLogger(`${username}, ${petId}, ${bidValue}`);
@@ -13,12 +20,7 @@ const addNewBid = (req, res) => {
       bidLogger(`Success bid for pet:"${bid.peId}"`);
       return res.json(bid);
     })
-    .catch((err) => {
-      bidLogger(`Failed to add bid, Error: ${err}`);
-      res.status(405).json({
-        msg: 'Invalid input',
-      });
-    });
+    .catch((err) => badInputsResponse(res, err));
 };
 
 const listAllBids = (req, res) => {
@@ -28,12 +30,7 @@ const listAllBids = (req, res) => {
       bidLogger(`Success retrieval for pet:"${bids[0].peId}"`);
       return res.json(bids);
     })
-    .catch((err) => {
-      bidLogger(`Failed to list bids, Error: ${err}"`);
-      res.status(405).json({
-        msg: 'Invalid input',
-      });
-    });
+    .catch((err) => badInputsResponse(res, err));
 };
 
 module.exports = {

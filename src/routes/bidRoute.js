@@ -1,7 +1,8 @@
+/* eslint-disable import/named */
 import { Router } from 'express';
 
-// eslint-disable-next-line import/named
 import { addNewBid, listAllBids } from '../controllers/bidController';
+import { checkAuth } from '../controllers/authController';
 
 const router = Router();
 
@@ -11,6 +12,6 @@ router.route('/bid')
 
 // List All pet bids for owner
 router.route('/bid/:petId')
-  .get(listAllBids);
+  .get(checkAuth, listAllBids);
 
 export default router;
