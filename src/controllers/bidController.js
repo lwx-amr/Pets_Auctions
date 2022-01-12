@@ -14,22 +14,22 @@ const addNewBid = (req, res) => {
       return res.json(bid);
     })
     .catch((err) => {
-      bidLogger(`Failed to add bid, Error: ${err.errors}"`);
+      bidLogger(`Failed to add bid, Error: ${err}`);
       res.status(405).json({
         msg: 'Invalid input',
       });
     });
 };
 
-const listAllBid = (req, res) => {
-  const { petId } = req.body;
+const listAllBids = (req, res) => {
+  const { petId } = req.params;
   BidModel.find({ petId })
-    .then((bid) => {
-      bidLogger(`Success retrieval for pet:"${bid.peId}"`);
-      return res.json(bid);
+    .then((bids) => {
+      bidLogger(`Success retrieval for pet:"${bids[0].peId}"`);
+      return res.json(bids);
     })
     .catch((err) => {
-      bidLogger(`Failed to list bids, Error: ${err.errors}"`);
+      bidLogger(`Failed to list bids, Error: ${err}"`);
       res.status(405).json({
         msg: 'Invalid input',
       });
@@ -37,5 +37,5 @@ const listAllBid = (req, res) => {
 };
 
 module.exports = {
-  addNewBid, listAllBid,
+  addNewBid, listAllBids,
 };

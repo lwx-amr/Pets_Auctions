@@ -1,13 +1,8 @@
-import { model, Schema } from 'mongoose';
-
-const SchemaTypes = Schema.Types;
+import { Schema, model } from 'mongoose';
 
 const BidSchema = Schema({
-  _id: {
-    type: SchemaTypes.long,
-  },
   petId: {
-    type: SchemaTypes.long,
+    type: Schema.ObjectId,
     required: true,
   },
   username: {
