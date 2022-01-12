@@ -14,7 +14,7 @@ const checkAuth = (req, res, next) => {
   if (!apiKey) unauthorizedResponse(res);
   UserModel.findOne({ apiKey })
     .then((user) => {
-      req.userId = user.id;
+      req.user = user;
       next();
     })
     .catch((err) => {

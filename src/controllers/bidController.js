@@ -12,9 +12,11 @@ const badInputsResponse = (res, err) => {
 };
 
 const addNewBid = (req, res) => {
-  const { username, petId, bidValue } = req.body;
-  bidLogger(`${username}, ${petId}, ${bidValue}`);
-  const newBid = BidModel({ username, petId, value: bidValue });
+  const { petId, bidValue } = req.body;
+  const { _id, name } = req.user;
+  const newBid = BidModel({
+    petId, userId: _id, name, value: bidValue,
+  });
   newBid.save()
     .then((bid) => {
       bidLogger(`Success bid for pet:"${bid.peId}"`);
