@@ -14,11 +14,12 @@ const checkAuth = (req, res, next) => {
   if (!apiKey) unauthorizedResponse(res);
   UserModel.findOne({ apiKey })
     .then((user) => {
+      if (!user) throw new Error('invalid api_key');
       req.user = user;
       next();
     })
     .catch((err) => {
-      authLogger(`Unauthorized Request, Error: ${err}`);
+      authLogger(`Unauthorized Request, ${err}`);
       unauthorizedResponse(res);
     });
 };
