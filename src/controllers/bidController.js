@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import debug from 'debug';
 
 import BidModel from '../repository/bidModel';

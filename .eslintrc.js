@@ -11,5 +11,7 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
+    'import/named': 'off',
+    'no-underscore-dangle': 'off',
   },
 };

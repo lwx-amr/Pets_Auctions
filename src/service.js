@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 // Requiring Modules
 import express from 'express';
 import config from 'config';
@@ -37,7 +36,6 @@ const apiLimiter = rateLimit({
 app.use(apiLimiter); // apply to all requests
 
 // Setup mongoose connection
-dbLogger(db);
 mongoose.Promise = global.Promise;
 mongoose.connect(db)
   .catch((err) => dbLogger({ error: err }));
