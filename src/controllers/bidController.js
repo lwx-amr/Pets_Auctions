@@ -33,8 +33,7 @@ const listAllBids = (req, res) => {
     .then((bids) => {
       bidLogger(`Success retrieval for pet:"${bids[0].petId}"`);
       return res.json(bids);
-    })
-    .catch((err) => badInputsResponse(res, err));
+    });
 };
 
 module.exports = {

@@ -2,7 +2,6 @@
 // Requiring Modules
 import express from 'express';
 import config from 'config';
-import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import debug from 'debug';
@@ -16,10 +15,6 @@ import bidRoute from './routes/bidRoute';
 const port = config.get('app.port');
 const db = config.get('database.url');
 const app = express();
-const corsOptions = {
-  origin: config.get('client.url'),
-  credentials: true,
-};
 
 // Init loggers
 const httpLogger = debug('app:http-server');
@@ -28,9 +23,6 @@ const dbLogger = debug('app:db');
 // Enable body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
-
-// Enable cors
-app.use(cors(corsOptions));
 
 // Using helmet to increase security
 app.use(helmet());
@@ -49,11 +41,6 @@ dbLogger(db);
 mongoose.Promise = global.Promise;
 mongoose.connect(db)
   .catch((err) => dbLogger({ error: err }));
-
-// Simple main api url response
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome, this is our great Pets Auction web app.' });
-});
 
 // Calling api routes
 app.use(bidRoute);

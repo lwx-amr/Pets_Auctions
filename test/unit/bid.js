@@ -171,6 +171,17 @@ describe('Routes Testing for Bid Routes', () => {
         });
     });
 
+    it('Should not list all bid of when api_key is not in the header', (done) => {
+      chai.request(app)
+        .post(`/bid/${newPets[0]._id}`)
+        .send({ value: 320 })
+        .end((err, res) => {
+          res.should.have.status(401);
+          res.body.should.have.property('msg').eql('Unauthorized request, api_key header is required');
+          done();
+        });
+    });
+
     it('Should not list all bid of when api_key is different from pet owner api_key', (done) => {
       chai.request(app)
         .get(`/bid/${newPets[0]._id}`)
