@@ -7,12 +7,8 @@ import { checkOwnership } from '../controllers/petController';
 
 const router = Router();
 
-// Add user's bid on certain pet;
-router.route('/bid')
-  .post(checkAuth, addNewBid);
-
-// List All pet bids for owner
 router.route('/bid/:petId')
-  .get(checkAuth, checkOwnership, listAllBids);
+  .post(checkAuth, addNewBid) // Add user's bid on certain pet;
+  .get(checkAuth, checkOwnership, listAllBids); // List all bids for certain pet owner
 
 export default router;
