@@ -177,7 +177,7 @@ describe('Routes Testing for Bid Routes', () => {
         .set('api_key', newUsers[1].apiKey)
         .end((err, res) => {
           res.should.have.status(401);
-          res.body.should.have.property('msg').eql('Unauthorized request, not an owner`');
+          res.body.should.have.property('msg').eql('Unauthorized request, not an owner');
           done();
         });
     });
