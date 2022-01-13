@@ -1,9 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/named */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-undef */
-/* eslint-disable no-underscore-dangle */
-
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import debug from 'debug';
