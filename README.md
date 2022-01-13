@@ -77,7 +77,9 @@ User api_key should be included in the header of all user requests as "header["a
 
 Request base URL: <code>{base-url}/bid/{petId}</code> , and <code>headers['api_key']={pet owner api_key}</code> should be included with the request to get the write response.
 <br>
+<br>
 Request example: <code>http://localhost:3000/bid/61df17aacb5dd9d8f002ee92</code>
+<br>
 <br>
 The response:
 <pre>
@@ -100,19 +102,21 @@ The response:
         }
 ]</code>
 </pre>
-
 ###### The return is an array with 2 entries (bids) of pet with id "61df17aacb5dd9d8f002ee92"
-<br>
 
 <hr>
 
 #### POST / add a new bid for a certain pet
 
-Request base URL: <code>{base-url}/bid/{petId}</code> , and <code>headers['api_key']= current user api_key</code> should be included with the request to be able to add a bid.
+Request base URL: <code>{base-url}/bid/{petId}</code>, <code>headers['api_key']= current user api_key</code>, and request body:<code>{value:Number}</code> should be included with the request to be able to add a bid.
 <br>
-Request example: <code>http://localhost:3000/bid/61df17aacb5dd9d8f002ee92</code>, request body: <code>{value:500}</code>
 <br>
-The response:
+Request example: <code>http://localhost:3000/bid/61df17aacb5dd9d8f002ee92</code><br>
+request body: <code>{value:500}</code><br>
+headers['api_key']={user "Amr" api_key}
+<br>
+<br>
+The response: 
 <br>
 
 <pre>
