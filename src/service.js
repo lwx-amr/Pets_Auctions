@@ -8,8 +8,6 @@ import rateLimit from 'express-rate-limit';
 import debug from 'debug';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 
 // Requiring project files
 import bidRoute from './routes/bidRoute';
@@ -47,6 +45,7 @@ const apiLimiter = rateLimit({
 app.use(apiLimiter); // apply to all requests
 
 // Setup mongoose connection
+dbLogger(db);
 mongoose.Promise = global.Promise;
 mongoose.connect(db)
   .catch((err) => dbLogger({ error: err }));
