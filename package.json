@@ -9,7 +9,7 @@
     "build": "npm run clean && npm run babel-build",
     "start": "npm run build && node ./build/service.js",
     "dev": "DEBUG=app,app:* nodemon --exec babel-node ./src/service.js",
-    "test": "NODE_ENV=test mocha --require @babel/register --recursive --exit ./test/*"
+    "test": "NODE_ENV=test DEBUG=app,app:* mocha --require @babel/register ./test/*"
   },
   "repository": {
     "type": "git",
