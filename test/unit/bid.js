@@ -1,9 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/named */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-undef */
-/* eslint-disable no-underscore-dangle */
-
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import debug from 'debug';
@@ -163,6 +157,17 @@ describe('Routes Testing for Bid Routes', () => {
       chai.request(app)
         .post(`/bid/${newPets[0]._id}`)
         .set('api_key', 'wrong_api_key')
+        .send({ value: 320 })
+        .end((err, res) => {
+          res.should.have.status(401);
+          res.body.should.have.property('msg').eql('Unauthorized request, api_key header is required');
+          done();
+        });
+    });
+
+    it('Should not list all bid of when api_key is not in the header', (done) => {
+      chai.request(app)
+        .post(`/bid/${newPets[0]._id}`)
         .send({ value: 320 })
         .end((err, res) => {
           res.should.have.status(401);
