@@ -1,4 +1,3 @@
-/* eslint-disable import/named */
 import { Router } from 'express';
 
 import { addNewBid, listAllBids } from '../controllers/bidController';
