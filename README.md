@@ -65,6 +65,26 @@ Launches the test runner with the NYC code coverage tool to get information abou
 
 <br>
 
+## Project Structure
+<pre>
+<code>
+{
+  root: {
+    src: 'Holding the main source code for the app, this is the director that babel will build for production', {
+      repository: 'All Database models are placed in this directory'
+      routes: 'All App routes will be included here',
+      controller: 'Every model will have a special controller with all the functions related to this model',
+      service.js: 'main app file',
+    },
+    test: 'Source code test cases will be included here',
+    config: 'Holding environments files, there are 2 option default for (production and development), and testing for (testing)',
+  }
+}
+</code>
+</pre>
+
+<br>
+
 ## Authentication
 
 User api_key should be included in the header of all user requests as "header["api_key"]" to verify authentication with the app.
